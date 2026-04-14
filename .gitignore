@@ -9,6 +9,7 @@ venv/
 
 # Data (DO NOT UPLOAD DATASET)
 data/
+*.zip
 
 # Models (large files)
 models/*.pth
