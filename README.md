@@ -1,8 +1,8 @@
-# 🫁 Pneumonia Detection using Deep Learning
+#  Pneumonia Detection using Deep Learning
 
 A state-of-the-art deep learning model for detecting pneumonia from chest X-ray images using **DenseNet121 + CBAM Attention + Focal Loss**.
 
-## 📊 Project Overview
+##  Project Overview
 
 This project develops and evaluates a binary classification model to automatically detect pneumonia in chest X-ray images. The model achieves **96.2% sensitivity** and **0.9275 AUC** on the test set, making it highly effective for medical screening applications.
 
@@ -12,7 +12,7 @@ This project develops and evaluates a binary classification model to automatical
 - **Explainability**: Grad-CAM visualizations to show decision-making regions
 - **Comprehensive Metrics**: ROC curves, PR curves, confusion matrices, and classification reports
 
-## 🎯 Model Performance
+##  Model Performance
 
 | Metric | Score |
 |--------|-------|
@@ -31,7 +31,7 @@ Actual Normal     [ 346      122]
        Pneumonia  [  30      750]
 ```
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 PNEUMONIA-DETECTION/
@@ -72,7 +72,7 @@ PNEUMONIA-DETECTION/
 └── README.md                        # This file
 ```
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1. Clone the Repository
 ```bash
@@ -116,7 +116,7 @@ python src/metrics/plot_confusion_matrix.py
 python src/explainability/gradcam.py
 ```
 
-## 📈 Training Strategy
+##  Training Strategy
 
 The model uses **2-phase training**:
 
@@ -131,7 +131,7 @@ The model uses **2-phase training**:
 - Learning Rate: 1e-5
 - Lower learning rate to preserve pre-trained features
 
-## 🔍 Explainability
+##  Explainability
 
 ### Grad-CAM Visualization
 Run to see which regions of X-rays the model focuses on:
@@ -141,7 +141,7 @@ python src/explainability/gradcam.py
 
 Sample output shows attention heatmaps overlaid on the original X-ray image, revealing regions contributing to pneumonia detection decisions.
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 - **Deep Learning**: PyTorch 2.0+
 - **Pre-trained Models**: TorchVision
@@ -150,7 +150,7 @@ Sample output shows attention heatmaps overlaid on the original X-ray image, rev
 - **Metrics**: Scikit-learn
 - **Image Augmentation**: Albumentations
 
-## 📋 Requirements
+##  Requirements
 
 - Python 3.11+
 - PyTorch 2.0+
@@ -159,7 +159,7 @@ Sample output shows attention heatmaps overlaid on the original X-ray image, rev
 
 See `requirement.txt` for complete list.
 
-## 📊 Dataset Information
+##  Dataset Information
 
 **Chest X-Ray Images (Pneumonia) Dataset**
 - **Total Images**: 5,856
@@ -169,11 +169,11 @@ See `requirement.txt` for complete list.
   - Validation: 2,093 images
   - Testing: 1,248 images
 
-## ⚠️ Medical Disclaimer
+##  Medical Disclaimer
 
 This project is for **educational and research purposes only**. It should NOT be used as a substitute for professional medical diagnosis. Always consult qualified healthcare professionals for medical decision-making.
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Feel free to:
 - Submit pull requests
@@ -181,25 +181,25 @@ Contributions are welcome! Feel free to:
 - Suggest improvements
 - Add new features
 
-## 📝 License
+##  License
 
 This project is licensed under the MIT License - see LICENSE file for details.
 
-## 👤 Author
+##  Author
 
-**Khira** - Machine Learning Engineer
+**KHIRABDI TANAYA PATRI** - Electronics and Communication with specialization in Biomedical Engineering [ Student ] 
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - Dataset: [Kaggle - Chest X-Ray Images (Pneumonia)](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia)
 - DenseNet: [Densely Connected Convolutional Networks](https://arxiv.org/abs/1608.06993)
 - CBAM: [Convolutional Block Attention Module](https://arxiv.org/abs/1807.06521)
 - Focal Loss: [Focal Loss for Dense Object Detection](https://arxiv.org/abs/1708.02002)
 
-## 📧 Contact
+##  Contact
 
 For questions or inquiries, feel free to reach out via GitHub issues.
 
 ---
 
-**⭐ If you found this project useful, please consider giving it a star!**
+** If you found this project useful, please consider giving it a star!**
