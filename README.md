@@ -168,6 +168,8 @@ See `requirement.txt` for complete list.
   - Training: 8,371 images (2.88x imbalance)
   - Validation: 2,093 images
   - Testing: 1,248 images
+  - Prediction :0  (Normal Lungs)
+  - Prediction : 1 (Pneumonia Affected Lungs)
 
 ##  Medical Disclaimer
 
@@ -187,7 +189,7 @@ This project is licensed under the MIT License - see LICENSE file for details.
 
 ##  Author
 
-**Khira** - Machine Learning Engineer
+**Khirabdi Tanaya Patri** 
 
 ##  Acknowledgments
 
