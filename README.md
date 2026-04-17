@@ -76,8 +76,8 @@ PNEUMONIA-DETECTION/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/pneumonia-detection.git
-cd pneumonia-detection
+git clone https://github.com/ftkhirabditanaya/PNEUMONIA-DETECTION.git
+cd PNEUMONIA-DETECTION
 ```
 
 ### 2. Set up Virtual Environment
@@ -187,7 +187,7 @@ This project is licensed under the MIT License - see LICENSE file for details.
 
 ##  Author
 
-**KHIRABDI TANAYA PATRI** - Electronics and Communication with specialization in Biomedical Engineering [ Student ] 
+**Khira** - Machine Learning Engineer
 
 ##  Acknowledgments
 
