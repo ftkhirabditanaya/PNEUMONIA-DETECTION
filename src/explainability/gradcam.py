@@ -44,49 +44,58 @@ def generate_gradcam(image_path):
 
     input_tensor = transform(img).unsqueeze(0).to(DEVICE)
 
-    features = []
-    gradients = []
+    # Use dicts instead of lists to avoid stale/duplicate captures
+    store = {"features": None, "gradients": None}
 
     def forward_hook(module, input, output):
-        features.append(output)
+        store["features"] = output
 
     def backward_hook(module, grad_in, grad_out):
-        gradients.append(grad_out[0])
+        store["gradients"] = grad_out[0]
 
     target_layer = model.features.denseblock4
-    target_layer.register_forward_hook(forward_hook)
-    target_layer.register_full_backward_hook(backward_hook)
 
-    output = model(input_tensor)
-    pred_class = output.argmax()
+    # ✅ Save handles so hooks can be cleanly removed after use
+    fwd_handle = target_layer.register_forward_hook(forward_hook)
+    bwd_handle = target_layer.register_full_backward_hook(backward_hook)
 
-    model.zero_grad()
-    output[0, pred_class].backward()
+    # ✅ Enable grad computation even in eval mode
+    with torch.enable_grad():
+        output = model(input_tensor)
+        pred_class = output.argmax(dim=1).item()  # ✅ .item() avoids tensor indexing issues
 
-    grad = gradients[0]
-    fmap = features[0]
+        model.zero_grad()
+        output[0, pred_class].backward()
 
-    weights = torch.mean(grad, dim=(2,3), keepdim=True)
+    # ✅ Remove hooks after use to prevent memory leaks or duplicate captures
+    fwd_handle.remove()
+    bwd_handle.remove()
+
+    grad = store["gradients"]
+    fmap = store["features"]
+
+    # ✅ Guard against None in case hooks didn't fire
+    if grad is None or fmap is None:
+        raise RuntimeError("Hooks did not capture features/gradients. Check target_layer path.")
+
+    weights = torch.mean(grad, dim=(2, 3), keepdim=True)
     cam = torch.sum(weights * fmap, dim=1).squeeze()
 
     cam = torch.relu(cam)
-    cam = cam / (cam.max() + 1e-8)  # Add epsilon to avoid division by zero
+    cam = cam / (cam.max() + 1e-8)
     cam = cam.cpu().detach().numpy()
 
     cam = cv2.resize(cam, (224, 224))
 
     img_np = np.array(img.resize((224, 224)))
     heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
-    
-    # Convert BGR heatmap to RGB for display
     heatmap_rgb = cv2.cvtColor(heatmap, cv2.COLOR_BGR2RGB)
-    
     superimposed = (heatmap_rgb * 0.4 + img_np * 0.6).astype(np.uint8)
 
-    plt.imshow(superimposed.astype(np.uint8))
-    plt.title("Grad-CAM")
+    plt.imshow(superimposed)
+    plt.title(f"Grad-CAM — Predicted class: {pred_class}")
     plt.axis("off")
-    plt.savefig("outputs/gradcam_result.png", dpi=300)
+    plt.savefig("outputs/gradcam_pneumonia_result.png", dpi=300, bbox_inches="tight")
     plt.show()
 
 
