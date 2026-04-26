@@ -16,7 +16,7 @@ class ChestXrayDataset(Dataset):
 
             images = os.listdir(cls_path)
 
-            # 🔥 LIMIT DATA (for CPU debugging)
+            #  LIMIT DATA (for CPU debugging)
             if limit:
                 images = images[:limit]
 
@@ -33,7 +33,7 @@ class ChestXrayDataset(Dataset):
 
         image = cv2.imread(img_path)
 
-        # 🔥 HANDLE CORRUPTED IMAGES
+        #  HANDLE CORRUPTED IMAGES
         if image is None:
             return self.__getitem__((idx + 1) % len(self.image_paths))
 
