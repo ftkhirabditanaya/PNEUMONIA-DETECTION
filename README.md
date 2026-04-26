@@ -183,14 +183,6 @@ Contributions are welcome! Feel free to:
 - Suggest improvements
 - Add new features
 
-##  License
-
-This project is licensed under the MIT License - see LICENSE file for details.
-
-##  Author
-
-**Khirabdi Tanaya Patri** 
-
 ##  Acknowledgments
 
 - Dataset: [Kaggle - Chest X-Ray Images (Pneumonia)](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia)
