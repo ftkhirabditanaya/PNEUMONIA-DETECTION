@@ -55,26 +55,26 @@ def generate_gradcam(image_path):
 
     target_layer = model.features.denseblock4
 
-    # ✅ Save handles so hooks can be cleanly removed after use
+    #  Save handles so hooks can be cleanly removed after use
     fwd_handle = target_layer.register_forward_hook(forward_hook)
     bwd_handle = target_layer.register_full_backward_hook(backward_hook)
 
-    # ✅ Enable grad computation even in eval mode
+    # Enable grad computation even in eval mode
     with torch.enable_grad():
         output = model(input_tensor)
-        pred_class = output.argmax(dim=1).item()  # ✅ .item() avoids tensor indexing issues
+        pred_class = output.argmax(dim=1).item()  #  .item() avoids tensor indexing issues
 
         model.zero_grad()
         output[0, pred_class].backward()
 
-    # ✅ Remove hooks after use to prevent memory leaks or duplicate captures
+    #  Remove hooks after use to prevent memory leaks or duplicate captures
     fwd_handle.remove()
     bwd_handle.remove()
 
     grad = store["gradients"]
     fmap = store["features"]
 
-    # ✅ Guard against None in case hooks didn't fire
+    #  Guard against None in case hooks didn't fire
     if grad is None or fmap is None:
         raise RuntimeError("Hooks did not capture features/gradients. Check target_layer path.")
 
