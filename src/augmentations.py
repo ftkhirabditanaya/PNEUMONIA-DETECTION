@@ -5,7 +5,7 @@ def get_train_transforms():
     return A.Compose([
         A.Resize(224, 224),
 
-        # 🔥 CLAHE → improves X-ray contrast (VERY IMPORTANT FOR PAPER)
+        # CLAHE → improves X-ray contrast (VERY IMPORTANT FOR PAPER)
         A.CLAHE(clip_limit=2.0, tile_grid_size=(8,8), p=0.7),
 
         A.HorizontalFlip(p=0.5),
