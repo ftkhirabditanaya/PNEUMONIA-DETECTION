@@ -39,7 +39,7 @@ def plot_roc_curve():
 
             outputs = model(images)
 
-            # ✅ FIX 1: Use SOFTMAX probabilities (NOT argmax)
+            #  FIX 1: Use SOFTMAX probabilities (NOT argmax)
             probs = torch.softmax(outputs, dim=1)[:, 1]
 
             all_probs.extend(probs.cpu().numpy())
@@ -48,18 +48,18 @@ def plot_roc_curve():
     all_labels = np.array(all_labels)
     all_probs = np.array(all_probs)
 
-    # ✅ FIX 2: Ensure both classes exist
+    #  FIX 2: Ensure both classes exist
     if len(np.unique(all_labels)) < 2:
-        print("❌ ROC cannot be computed (only one class present)")
+        print(" ROC cannot be computed (only one class present)")
         return
 
-    # ✅ ROC computation
+    # ROC computation
     fpr, tpr, thresholds = roc_curve(all_labels, all_probs)
     roc_auc = auc(fpr, tpr)
 
-    print(f"✅ AUC Score: {roc_auc:.4f}")
+    print(f" AUC Score: {roc_auc:.4f}")
 
-    # ✅ Plot
+    #  Plot
     plt.figure(figsize=(8, 6))
     plt.plot(fpr, tpr, linewidth=2, label=f"ROC curve (AUC = {roc_auc:.4f})")
 
@@ -76,7 +76,7 @@ def plot_roc_curve():
     plt.savefig("outputs/roc_curve.png")
     plt.show()
 
-    print("📊 ROC curve saved at: outputs/roc_curve.png")
+    print(" ROC curve saved at: outputs/roc_curve.png")
 
 
 if __name__ == "__main__":
