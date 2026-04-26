@@ -22,7 +22,7 @@ def plot_confusion():
     print("Loading trained model...")
     model = DenseNetAttention(num_classes=2)
 
-    # ✅ FIX: load correct checkpoint safely
+    #  FIX: load correct checkpoint safely
     checkpoint = torch.load("models/phase1_best.pth", map_location=DEVICE, weights_only=False)
     model.load_state_dict(checkpoint["model_state_dict"])
 
@@ -47,7 +47,7 @@ def plot_confusion():
     all_labels = np.array(all_labels)
     all_preds = np.array(all_preds)
 
-    # ✅ Confusion matrix
+    # Confusion matrix
     cm = confusion_matrix(all_labels, all_preds)
 
     print("\nConfusion Matrix:")
@@ -55,10 +55,10 @@ def plot_confusion():
 
     classes = ["NORMAL", "PNEUMONIA"]
 
-    # ✅ Convert to percentage
+    # Convert to percentage
     cm_percent = cm.astype("float") / cm.sum(axis=1)[:, np.newaxis]
 
-    # ✅ Professional heatmap
+    # Professional heatmap
     plt.figure(figsize=(7, 6))
     sns.heatmap(
         cm_percent,
@@ -75,12 +75,12 @@ def plot_confusion():
     plt.title("Confusion Matrix (Counts + %)")
     plt.tight_layout()
 
-    # ✅ Save output
+    # Save output
     Path("outputs").mkdir(exist_ok=True)
     plt.savefig("outputs/confusion_matrix.png", dpi=150)
     plt.show()
 
-    print("📊 Saved at: outputs/confusion_matrix.png")
+    print(" Saved at: outputs/confusion_matrix.png")
 
 
 if __name__ == "__main__":
