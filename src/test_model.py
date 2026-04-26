@@ -28,7 +28,7 @@ def test():
     checkpoint = torch.load(
     "models/phase1_best.pth",
     map_location=DEVICE,
-    weights_only=False   # 🔥 FIX
+    weights_only=False   #  FIX
 )
     model.load_state_dict(checkpoint["model_state_dict"])
 
