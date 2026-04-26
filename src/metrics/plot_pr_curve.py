@@ -38,7 +38,7 @@ def plot_pr_curve():
 
             outputs = model(images)
 
-            # ✅ IMPORTANT: probability for PNEUMONIA class
+            # IMPORTANT: probability for PNEUMONIA class
             probs = torch.softmax(outputs, dim=1)[:, 1]
 
             all_probs.extend(probs.cpu().numpy())
@@ -47,13 +47,13 @@ def plot_pr_curve():
     all_labels = np.array(all_labels)
     all_probs = np.array(all_probs)
 
-    # ✅ Compute PR curve
+    # Compute PR curve
     precision, recall, thresholds = precision_recall_curve(all_labels, all_probs)
     ap_score = average_precision_score(all_labels, all_probs)
 
-    print(f"🔥 Average Precision (AP): {ap_score:.4f}")
+    print(f" Average Precision (AP): {ap_score:.4f}")
 
-    # ✅ Plot
+    # Plot
     plt.figure(figsize=(8, 6))
     plt.plot(recall, precision, linewidth=2, label=f"PR Curve (AP = {ap_score:.4f})")
 
@@ -67,7 +67,7 @@ def plot_pr_curve():
     plt.savefig("outputs/pr_curve.png")
     plt.show()
 
-    print("📊 PR curve saved at: outputs/pr_curve.png")
+    print("PR curve saved at: outputs/pr_curve.png")
 
 
 if __name__ == "__main__":
