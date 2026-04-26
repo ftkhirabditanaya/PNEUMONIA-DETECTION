@@ -228,12 +228,12 @@ def run_phase(
                 },
                 save_path,
             )
-            print(f"  ✅ Best model saved (F1={best_f1:.4f})")
+            print(f"   Best model saved (F1={best_f1:.4f})")
         else:
             counter += 1
             print(f"  ⚠  No improvement: {counter}/{patience}")
             if counter >= patience:
-                print(f"  🛑 Early stopping at epoch {epoch}")
+                print(f"   Early stopping at epoch {epoch}")
                 break
 
     print(f"\n  {phase_name} complete. Best val F1: {best_f1:.4f}")
@@ -413,8 +413,8 @@ def main():
     # Check against targets
     acc_target = test_metrics["accuracy"] >= 0.90
     auc_target = test_metrics["auc"] >= 0.95
-    print(f"\n  Target accuracy >90%: {'✅ MET' if acc_target else '❌ Not yet'}")
-    print(f"  Target AUC     >0.95: {'✅ MET' if auc_target else '❌ Not yet'}")
+    print(f"\n  Target accuracy >90%: {' MET' if acc_target else ' Not yet'}")
+    print(f"  Target AUC     >0.95: {' MET' if auc_target else ' Not yet'}")
 
     # Save results JSON
     results = {
@@ -433,7 +433,7 @@ def main():
         save_path=PLOT_DIR / "training_history.png",
     )
 
-    print("\n✅ Training complete! Next step: run src/explainability/gradcam.py")
+    print("\n Training complete! Next step: run src/explainability/gradcam.py")
 
 
 if __name__ == "__main__":
